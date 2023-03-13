@@ -25,6 +25,11 @@ public class PlayerController : MonoBehaviour
 
     private float yMovement = -9.81f;
 
+
+    public Vector3 MovementValue { set; get; }
+    public bool IsJumping { set; get; }
+    public bool IsSprinting { set; get; }
+
     private void Awake()
     {
         if (Instance != null)
@@ -34,14 +39,16 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
     }
 
-    private void Update()
+    private void Update() 
     {
-        var movementValue = new Vector2(Input.GetAxis("Horizontal"),  Input.GetAxis("Vertical"));
-
-        if (SprintSkill.IsActive && Input.GetKey(KeyCode.LeftShift) && StaminaVariable.Value > 0)
+        var movementValue = MovementValue;
+        
+        if (SprintSkill.IsActive && IsSprinting && StaminaVariable.Value > 0)
         {
             movementValue *= sprintModificator;
             StaminaVariable.Value -= staminaUse * Time.deltaTime;
+
+            IsSprinting = false;
         }
         else
         {
@@ -56,8 +63,10 @@ public class PlayerController : MonoBehaviour
         if(characterController.velocity.sqrMagnitude > 0.1)
             transform.forward = new Vector3(movementValue.x, 0f, movementValue.y);
 
-        if (JumpSkill.IsActive && Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
+        if (JumpSkill.IsActive && IsJumping && characterController.isGrounded) {
             yMovement = 10f;
+            IsJumping = false;
+        }
 
         yMovement = Mathf.Max(-9.81f, yMovement - Time.deltaTime * 30f);
     }
