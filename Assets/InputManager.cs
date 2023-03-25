@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -16,7 +13,7 @@ public class InputManager : MonoBehaviour
     {
         var playerController = FindObjectOfType<PlayerController>();
         if (playerController == null) return;
-        
+
         _inputs.Character.MoveJoystick.performed += moveValue =>
         {
             playerController.MovementValue = moveValue.ReadValue<Vector2>();
@@ -24,6 +21,10 @@ public class InputManager : MonoBehaviour
         _inputs.Character.MoveJoystick.canceled += moveValue =>
         {
             playerController.MovementValue = moveValue.ReadValue<Vector2>();
+        };
+        _inputs.Character.Move.performed += moveValue =>
+        {
+            playerController.MovementValue = moveValue.ReadValue<Vector3>();
         };
         _inputs.Character.Jump.performed += jumpValue =>
         {
