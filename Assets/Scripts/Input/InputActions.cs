@@ -218,8 +218,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""3D Vector"",
-                    ""id"": ""f3a33f43-15a7-4f0f-81c5-865f29bd5df3"",
+                    ""name"": ""3D Vector Movement"",
+                    ""id"": ""d0dc1be0-c490-4c8c-a1b0-76f3a71b1f27"",
                     ""path"": ""3DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -229,8 +229,30 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""up"",
+                    ""id"": ""fbf5f2c7-8470-4920-bab5-c7cdb5b7b193"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""a4a0bea2-1f0a-4746-912e-4c285e82f6bd"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""left"",
-                    ""id"": ""c268ce9e-ca4d-41b0-8bf6-0826eb7546a8"",
+                    ""id"": ""12fb33cc-3ff9-4ddf-831a-cf1b1240b80c"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -241,30 +263,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""57360845-668b-4103-bc74-eca07bffa0da"",
+                    ""id"": ""2bd349c3-e661-44bc-bc81-53c8109e6355"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""forward"",
-                    ""id"": ""91593855-e0d3-4e70-86a4-e659bcf1022d"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""backward"",
-                    ""id"": ""03c3eaef-b441-40fd-9338-34f7cbe50b7a"",
-                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
