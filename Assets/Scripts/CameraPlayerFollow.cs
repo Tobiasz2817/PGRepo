@@ -1,4 +1,3 @@
-using Steamworks;
 using UnityEngine;
 
 public class CameraPlayerFollow : MonoBehaviour
@@ -7,7 +6,7 @@ public class CameraPlayerFollow : MonoBehaviour
 
     private void Awake()
     {   
-        SteamUserStats.SetAchievement("cameraControlled");
+        PlatformUserStats.SetAchievement("cameraControlled");
     }
 
     private void LateUpdate()

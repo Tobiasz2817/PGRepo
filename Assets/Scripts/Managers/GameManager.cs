@@ -1,11 +1,8 @@
-using Steamworks;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private void Awake()
-    {
-        SteamUserStats.SetAchievement("welcomeAchievement");
+    private void Start() {
+        PlatformUserStats.SetAchievement("welcomeAchievement");
     }
-
 }
