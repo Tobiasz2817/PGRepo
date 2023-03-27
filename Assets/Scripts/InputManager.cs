@@ -1,12 +1,13 @@
+using Cinemachine;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private InputActions _inputs;
+    public InputActions Inputs;
 
     private void Awake()
     {
-        _inputs = new InputActions();
+        Inputs = new InputActions();
     }
 
     private void OnEnable()
@@ -14,32 +15,41 @@ public class InputManager : MonoBehaviour
         var playerController = FindObjectOfType<PlayerController>();
         if (playerController == null) return;
 
-        _inputs.Character.MoveJoystick.performed += moveValue =>
+        #if UNITY_ANDROID
+
+        Inputs.Character.MoveJoystick.performed += moveValue =>
         {
             playerController.MovementValue = moveValue.ReadValue<Vector2>();
         };
-        _inputs.Character.MoveJoystick.canceled += moveValue =>
-        {
+        Inputs.Character.MoveJoystick.canceled += moveValue => {
             playerController.MovementValue = moveValue.ReadValue<Vector2>();
         };
-        _inputs.Character.Move.performed += moveValue =>
+        
+        var cinemachineInputProvider = FindObjectOfType<CinemachineInputProvider>();
+        cinemachineInputProvider.AutoEnableInputs = true;
+        
+        #else
+        
+        Inputs.Character.Move.performed += moveValue =>
         {
             playerController.MovementValue = moveValue.ReadValue<Vector3>();
         };
-        _inputs.Character.Jump.performed += jumpValue =>
+
+        #endif
+
+        Inputs.Character.Jump.performed += jumpValue =>
         {
             playerController.IsJumping = jumpValue.ReadValueAsButton();
         };
-        _inputs.Character.Sprint.performed += sprintValue =>
+        Inputs.Character.Sprint.performed += sprintValue =>
         {
             playerController.IsSprinting = sprintValue.ReadValueAsButton();
         };
-        
-        _inputs.Enable();
+        Inputs.Enable();
     }
 
     private void OnDisable()
     {
-        _inputs.Disable();
+        Inputs.Disable();
     }
 }
