@@ -152,10 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dadeb9e847187b84398f3761ef9f833d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubePrefab: {fileID: 3765449915012218784, guid: 700f59b1f101c2b45b61cd535bbfe445, type: 3}
-  minCubeCount: 1000
-  maxCubeCount: 2000
-  sphereRadius: 10
+  prefab: {fileID: 2619605118531869650, guid: 700f59b1f101c2b45b61cd535bbfe445, type: 3}
+  countSpawnObjects: 1000
 --- !u!4 &571290975
 Transform:
   m_ObjectHideFlags: 0
