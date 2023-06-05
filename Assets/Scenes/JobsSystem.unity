@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 3765449915012218784, guid: 700f59b1f101c2b45b61cd535bbfe445, type: 3}
   minCubeCount: 1000
-  maxCubeCount: 10000
+  maxCubeCount: 2000
   sphereRadius: 10
 --- !u!4 &571290975
 Transform:

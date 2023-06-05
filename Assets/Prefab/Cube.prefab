@@ -110,5 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836fa8bd64ce16e40b06a9fea53951ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  isSelected: 0
+  sphereRadius: 10

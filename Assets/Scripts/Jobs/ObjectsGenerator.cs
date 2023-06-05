@@ -2,7 +2,7 @@ using UnityEngine;
 using Unity.Jobs;
 using Unity.Collections;
 using Unity.Burst;
-using Random = UnityEngine.Random;
+using Random = Unity.Mathematics.Random;
 
 public class ObjectsGenerator : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class ObjectsGenerator : MonoBehaviour
     public int maxCubeCount = 10000;
     public float sphereRadius = 10f;
 
-    private NativeArray<Vector3> cubePositions;
+    public NativeArray<Vector3> cubePositions;
 
     private void Start()
     {
@@ -25,14 +25,15 @@ public class ObjectsGenerator : MonoBehaviour
 
     private void GenerateCubes()
     {
-        int cubeCount = Random.Range(minCubeCount, maxCubeCount);
+        int cubeCount = UnityEngine.Random.Range(minCubeCount, maxCubeCount);
 
         cubePositions = new NativeArray<Vector3>(cubeCount, Allocator.Persistent);
-        Unity.Mathematics.Random random = new Unity.Mathematics.Random((uint)System.Environment.TickCount);
+
+        Random random = new Random((uint)System.Environment.TickCount);
 
         CubeGeneratorJob generatorJob = new CubeGeneratorJob()
         {
-            cubePositions = cubePositions,
+            cubePositions = this.cubePositions,
             random = random,
             sphereRadius = sphereRadius
         };
@@ -43,7 +44,7 @@ public class ObjectsGenerator : MonoBehaviour
         for (int i = 0; i < cubeCount; i++)
         {
             GameObject cube = Instantiate(cubePrefab, cubePositions[i], Quaternion.identity);
-            //cube.GetComponent<CubeController>().Initialize();
+            cube.GetComponent<CubeController>().InitCubeController(this);
         }
     }
 
@@ -51,7 +52,8 @@ public class ObjectsGenerator : MonoBehaviour
     private struct CubeGeneratorJob : IJobParallelFor
     {
         public NativeArray<Vector3> cubePositions;
-        public Unity.Mathematics.Random random;
+
+        public Random random;
         public float sphereRadius;
 
         public void Execute(int index)
